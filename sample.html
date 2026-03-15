@@ -1,0 +1,313 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We're Engaged!</title>
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lato', sans-serif; color: #fff; overflow-x: hidden; }
+
+  #particles-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  section { position: relative; z-index: 2; }
+
+  .parallax {
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-1 { background-image: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1600'); }
+  .section-2 { background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600'); }
+  .section-3 { background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600'); }
+
+  .overlay {
+    background: rgba(0,0,0,0.45);
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .content {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    letter-spacing: 0.3rem;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-weight: 300;
+    font-size: 1.3rem;
+    max-width: 600px;
+    margin: 0.5rem auto;
+    line-height: 1.9;
+  }
+  .date {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    margin-top: 1rem;
+    opacity: 0.9;
+    font-family: 'Playfair Display', serif;
+  }
+  .emoji { font-size: 3.5rem; margin: 1.2rem 0; }
+
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .countdown-item {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    min-width: 100px;
+    transition: transform 0.3s;
+  }
+  .countdown-item:hover { transform: scale(1.1); }
+  .countdown-item span {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  .countdown-item label {
+    font-size: 0.85rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .timeline {
+    max-width: 600px;
+    margin: 2rem auto 0;
+    text-align: left;
+    border-left: 2px solid rgba(255,255,255,0.3);
+    padding-left: 2rem;
+  }
+  .timeline-item {
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '♥';
+    position: absolute;
+    left: -2.7rem;
+    top: 0;
+    font-size: 1.2rem;
+    color: #e74c7c;
+  }
+  .timeline-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+  .timeline-item p {
+    font-size: 1rem;
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+    margin: 2rem auto 0;
+  }
+  .gallery img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.4s, box-shadow 0.4s;
+    cursor: pointer;
+  }
+  .gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .parallax { background-attachment: scroll; }
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2rem; }
+    .countdown { gap: 1rem; }
+    .countdown-item { padding: 1rem 1.2rem; min-width: 70px; }
+    .countdown-item span { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<section class="parallax section-1">
+  <div class="overlay">
+    <div data-aos="zoom-in" data-aos-duration="1500">
+      <h1>We Said Yes!</h1>
+      <div class="emoji">💍</div>
+      <p class="date">March 15, 2026</p>
+    </div>
+    <div class="countdown" data-aos="fade-up" data-aos-delay="500">
+      <div class="countdown-item"><span id="days">0</span><label>Days</label></div>
+      <div class="countdown-item"><span id="hours">0</span><label>Hours</label></div>
+      <div class="countdown-item"><span id="minutes">0</span><label>Minutes</label></div>
+      <div class="countdown-item"><span id="seconds">0</span><label>Seconds</label></div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div data-aos="fade-up">
+    <h2>Our Story</h2>
+    <div class="emoji">❤️</div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+      <h3>First Met — Jan 2023</h3>
+      <p>A chance encounter that changed everything.</p>
+    </div>
+    <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+      <h3>First Date — Mar 2023</h3>
+      <p>Coffee turned into hours of conversation.</p>
+    </div>
+    <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+      <h3>The Proposal — Mar 2026</h3>
+      <p>Under the stars, one knee, one question, one forever.</p>
+    </div>
+  </div>
+</section>
+
+<section class="parallax section-2">
+  <div class="overlay">
+    <div data-aos="fade-up" data-aos-duration="1200">
+      <h2>Moments Together</h2>
+      <div class="emoji">📸</div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div data-aos="fade-up">
+    <h2>Gallery</h2>
+    <p>Some of our favorite memories</p>
+  </div>
+  <div class="gallery">
+    <img data-aos="zoom-in" data-aos-delay="100" src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=600" alt="Memory 1" onclick="openLightbox(this)">
+    <img data-aos="zoom-in" data-aos-delay="200" src="https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?w=600" alt="Memory 2" onclick="openLightbox(this)">
+    <img data-aos="zoom-in" data-aos-delay="300" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" alt="Memory 3" onclick="openLightbox(this)">
+  </div>
+</section>
+
+<section class="parallax section-3">
+  <div class="overlay">
+    <div data-aos="zoom-in" data-aos-duration="1200">
+      <h2>Forever Begins Now</h2>
+      <div class="emoji">✨</div>
+      <p>Wedding details coming soon. Stay tuned!</p>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Enlarged photo">
+</div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  // AOS init
+  AOS.init({ once: true });
+
+  // Particles
+  particlesJS('particles-js', {
+    particles: {
+      number: { value: 40 },
+      color: { value: '#e74c7c' },
+      shape: { type: 'circle' },
+      opacity: { value: 0.4, random: true },
+      size: { value: 4, random: true },
+      move: { enable: true, speed: 1, direction: 'none', out_mode: 'out' }
+    },
+    interactivity: {
+      events: { onhover: { enable: true, mode: 'repulse' } },
+      modes: { repulse: { distance: 100 } }
+    }
+  });
+
+  // Countdown — set your wedding date here
+  const weddingDate = new Date('2026-12-15T00:00:00').getTime();
+  setInterval(() => {
+    const diff = weddingDate - Date.now();
+    if (diff <= 0) return;
+    document.getElementById('days').textContent = Math.floor(diff / 86400000);
+    document.getElementById('hours').textContent = Math.floor((diff % 86400000) / 3600000);
+    document.getElementById('minutes').textContent = Math.floor((diff % 3600000) / 60000);
+    document.getElementById('seconds').textContent = Math.floor((diff % 60000) / 1000);
+  }, 1000);
+
+  // Lightbox
+  function openLightbox(img) {
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+</script>
+</body>
+</html>
