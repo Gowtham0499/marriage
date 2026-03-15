@@ -234,16 +234,11 @@
             object-fit: contain;
         }
 
-        /* Mobile: disable fixed attachment (iOS/Android don't support it well) */
-        @supports (-webkit-touch-callout: none) {
+        @media (hover: none),
+        (max-width: 768px) {
             .parallax {
                 background-attachment: scroll;
-            }
-        }
-
-        @media (hover: none) {
-            .parallax {
-                background-attachment: scroll;
+                background-position: center center;
             }
 
             .countdown-item:hover {
