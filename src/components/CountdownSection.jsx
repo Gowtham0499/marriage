@@ -3,13 +3,8 @@ import { Parallax } from 'react-parallax';
 import useCountdown from '../hooks/useCountdown';
 import useScrollReveal from '../hooks/useScrollReveal';
 import { WEDDING_DATE } from '../data/constants';
-import SparkleSystem from './SparkleSystem';
 import TempleBg from './TempleBg';
 
-/**
- * CountdownSection — Live countdown to the wedding date with sparkle effects,
- * temple silhouette background, and parallax scrolling.
- */
 export default function CountdownSection() {
   const { days, hours, minutes, seconds } = useCountdown(WEDDING_DATE);
 
@@ -24,7 +19,6 @@ export default function CountdownSection() {
   return (
     <Parallax strength={300}>
       <section className="countdown-section">
-        <SparkleSystem />
         <TempleBg style={{ color: 'var(--gold)', opacity: '.05' }} />
 
         <h2 ref={headingRef} data-reveal="up">The Countdown Begins</h2>

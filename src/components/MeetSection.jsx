@@ -27,8 +27,8 @@ export default function MeetSection() {
       )}
     >
       <section className="meet">
-        <DiyaLamp position="left" className="section-diya" />
-        <DiyaLamp position="right" className="section-diya" />
+        <DiyaLamp position="left" className="section-diya" style={{ color: '#c9a96e' }} />
+        <DiyaLamp position="right" className="section-diya" style={{ color: '#c9a96e' }} />
         <SideOrnament symbol="✧" position="left" />
         <SideOrnament symbol="✧" position="right" />
 

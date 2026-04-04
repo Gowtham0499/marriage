@@ -28,8 +28,8 @@ export default function InfoSection() {
       )}
     >
       <section className="info">
-        <DiyaLamp position="left" className="section-diya" />
-        <DiyaLamp position="right" className="section-diya" />
+        <DiyaLamp position="left" className="section-diya" style={{ color: '#c9a96e' }} />
+        <DiyaLamp position="right" className="section-diya" style={{ color: '#c9a96e' }} />
 
         <h2 data-reveal="up" ref={headingRef}>Things to Know</h2>
         <p

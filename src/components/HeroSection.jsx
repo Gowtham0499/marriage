@@ -12,8 +12,8 @@ export default function HeroSection() {
         <span className="hero-float">✧</span>
         <span className="hero-float">❊</span>
 
-        <DiyaLamp position="left" />
-        <DiyaLamp position="right" />
+        <DiyaLamp position="left" style={{ color: '#c9a96e' }} />
+        <DiyaLamp position="right" style={{ color: '#c9a96e' }} />
 
         <div className="hero-content">
           <MonogramLogo />
