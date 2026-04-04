@@ -1,7 +1,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--gold:#c9a96e;--dark:#1a1a1a;--cream:#faf7f2;--text:#333;--light-gold:#e8d5a8;--deep-dark:#111}
 body{font-family:'Lato',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 
 /* ── Floating particles ── */
 .floaters{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden}
@@ -9,7 +9,7 @@ html{scroll-behavior:smooth}
 @keyframes floatUp{0%{transform:translateY(100vh) rotate(0deg) scale(.5);opacity:0}10%{opacity:.4}90%{opacity:.4}100%{transform:translateY(-10vh) rotate(360deg) scale(1);opacity:0}}
 
 /* ── Hero ── */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#0f0f0f 0%,#1a1a1a 40%,#222 100%);color:#fff;position:relative;padding:2rem;overflow:hidden}
+.hero{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#0f0f0f 0%,#1a1a1a 40%,#222 100%);color:#fff;position:relative;padding:2rem;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="p" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 0v40M0 20h40" stroke="%23c9a96e" stroke-width="0.3" opacity="0.15"/></pattern></defs><rect fill="url(%23p)" width="200" height="200"/></svg>');opacity:.4;pointer-events:none}
 .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,169,110,.06) 0%,transparent 70%);pointer-events:none}
 .hero>*{position:relative;z-index:1}
@@ -25,6 +25,12 @@ html{scroll-behavior:smooth}
 /* Gold shimmer on hero names */
 @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
 .hero h3{background:linear-gradient(90deg,var(--gold) 0%,#f0dca4 40%,var(--gold) 60%,#f0dca4 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:heroReveal 1.5s cubic-bezier(.22,1,.36,1) forwards,shimmer 6s linear 2s infinite}
+
+/* Monogram logo above hero text */
+.monogram-logo{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);width:clamp(180px,35vw,300px);margin-bottom:.5rem;opacity:0;animation:monogramFade 1.5s cubic-bezier(.22,1,.36,1) 2s forwards;z-index:1}
+.hero-content{position:relative;z-index:1;text-align:center}
+.monogram-logo canvas{width:100%;height:auto}
+@keyframes monogramFade{from{opacity:0;transform:translateX(-50%) translateY(20px) scale(.9)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
 
 /* Temple silhouette at bottom of hero */
 .temple-bg{position:absolute;bottom:0;left:0;width:100%;z-index:0;opacity:.1;line-height:0}
@@ -108,7 +114,7 @@ html{scroll-behavior:smooth}
 .event-info-trigger{position:absolute;top:.8rem;right:.8rem;z-index:10}
 .event-info-icon{display:inline-flex;align-items:center;justify-content:center;width:1.2rem;height:1.2rem;font-size:.6rem;border:1px solid rgba(201,169,110,.4);border-radius:50%;opacity:.5;cursor:help;transition:opacity .2s}
 .event-info-trigger:hover .event-info-icon{opacity:1}
-.event-tooltip-fixed{position:fixed;transform:translateX(-50%);width:280px;background:rgba(15,15,15,.95);border:1px solid rgba(201,169,110,.3);border-radius:6px;padding:1rem 1.2rem;z-index:10001;animation:tooltipIn .25s ease;backdrop-filter:blur(8px);pointer-events:none}
+.event-tooltip-fixed{position:fixed;transform:translateX(-50%);max-width:calc(100vw - 24px);background:rgba(15,15,15,.95);border:1px solid rgba(201,169,110,.3);border-radius:6px;padding:1rem 1.2rem;z-index:10001;animation:tooltipIn .25s ease;backdrop-filter:blur(8px)}
 .event-tooltip-fixed p{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:#ccc;line-height:1.7;text-align:left;margin:0}
 .event-tooltip-arrow-up{position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(45deg);width:10px;height:10px;background:rgba(15,15,15,.95);border-left:1px solid rgba(201,169,110,.3);border-top:1px solid rgba(201,169,110,.3)}
 @keyframes tooltipIn{from{opacity:0;transform:translateX(-50%) translateY(-4px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
@@ -137,8 +143,8 @@ html{scroll-behavior:smooth}
 .gallery h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2rem);color:var(--gold);letter-spacing:.25em;margin-bottom:3rem;text-transform:uppercase}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;max-width:900px;margin:0 auto}
 .gallery-item{position:relative;overflow:hidden;border:none;padding:0;cursor:pointer;background:none;aspect-ratio:1;display:block}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1),filter .4s ease}
-.gallery-item:hover img{transform:scale(1.08);filter:brightness(1.1)}
+.gallery-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform .6s cubic-bezier(.22,1,.36,1),filter .4s ease}
+.gallery-item:hover .gallery-bg{transform:scale(1.08);filter:brightness(1.1)}
 .gallery-overlay{position:absolute;inset:0;background:rgba(26,26,26,.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .4s ease}
 .gallery-overlay span{color:var(--gold);font-size:1.5rem;transform:scale(0);transition:transform .3s ease}
 .gallery-item:hover .gallery-overlay{opacity:1}
@@ -147,7 +153,9 @@ html{scroll-behavior:smooth}
 /* Lightbox */
 .lightbox{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease}
 .lightbox-content{position:relative;max-width:90vw;max-height:90vh;display:flex;align-items:center;justify-content:center}
-.lightbox-content img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:2px;box-shadow:0 0 60px rgba(201,169,110,.1)}
+.lightbox-image-wrapper{position:relative;width:80vw;height:80vh;max-width:800px}
+.lightbox-bg{width:100%;height:100%;background-size:contain;background-position:center;background-repeat:no-repeat;border-radius:2px}
+.lightbox-shield{position:absolute;inset:0;z-index:1;cursor:default}
 .lightbox-close{position:absolute;top:-2.5rem;right:0;background:none;border:none;color:var(--gold);font-size:2rem;cursor:pointer;transition:transform .2s;z-index:1}
 .lightbox-close:hover{transform:scale(1.2)}
 .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--gold);font-size:3rem;cursor:pointer;padding:1rem;transition:opacity .2s,transform .2s;opacity:.6}
@@ -156,6 +164,10 @@ html{scroll-behavior:smooth}
 .lightbox-next{right:-4rem}
 .lightbox-caption{color:#ccc;font-family:'Cormorant Garamond',serif;font-size:1rem;margin-top:1rem;text-align:center}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* Image download protection */
+.protected-image{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;pointer-events:auto}
+.protected-image *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 
 /* ── Info (enhanced) ── */
 .info{padding:6rem 2rem;background:var(--cream);text-align:center;position:relative;overflow:hidden}
@@ -207,7 +219,7 @@ footer{text-align:center;padding:2.5rem;background:var(--dark);color:#666;font-s
 @media(max-width:480px){
   .events-grid{grid-template-columns:1fr;padding:0 .5rem}
   .info-grid{grid-template-columns:1fr}
-  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:.3rem}
+  .gallery-grid{grid-template-columns:1fr;gap:.5rem;max-width:400px;margin:0 auto}
   .lightbox-prev{left:0}
   .lightbox-next{right:0}
   .lightbox-nav{font-size:2rem;padding:.5rem}

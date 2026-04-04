@@ -44,7 +44,7 @@ export default function BlessingsSection() {
           ஓம் ஸ்ரீ கணேசாய நம
         </p>
         <p className="invite-text" data-reveal="scale" ref={inviteRef} style={{ transitionDelay: '.1s' }}>
-          I INVITE
+          We INVITE
         </p>
         <p data-reveal="up" ref={joinTextRef} style={{ transitionDelay: '.2s' }}>
           You to join us in the wedding celebrations of

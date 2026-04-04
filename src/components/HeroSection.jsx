@@ -1,14 +1,8 @@
 import { Parallax } from 'react-parallax';
 import DiyaLamp from './DiyaLamp';
 import TempleBg from './TempleBg';
+import MonogramLogo from './MonogramLogo';
 
-/**
- * HeroSection — Full-viewport landing with animated couple names,
- * ornament line, floating symbols, diya lamps, and temple silhouette.
- *
- * All animations (heroReveal, ornamentGrow, drift) are CSS-driven via App.css.
- * Wrapped with react-parallax for background parallax effect.
- */
 export default function HeroSection() {
   return (
     <Parallax strength={300}>
@@ -21,10 +15,13 @@ export default function HeroSection() {
         <DiyaLamp position="left" />
         <DiyaLamp position="right" />
 
-        <h3>GOWTHAM</h3>
-        <h2>W E D S</h2>
-        <h3>GOMATHI</h3>
-        <div className="ornament"></div>
+        <div className="hero-content">
+          <MonogramLogo />
+          <h3>GOWTHAM</h3>
+          <h2>W E D S</h2>
+          <h3>GOMATHI</h3>
+          <div className="ornament"></div>
+        </div>
 
         <TempleBg />
       </section>

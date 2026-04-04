@@ -27,10 +27,10 @@ export const EVENTS = [
 
 /** Informational cards displayed in the Things to Know section */
 export const INFO_ITEMS = [
-  { icon: "#", title: "Hashtag", description: "While posting photos on social media please use the hashtag — <strong>#abkan</strong>" },
-  { icon: "☀", title: "Weather", description: "It will be mostly sunny with temperature reaching up to 28°C at the venue" },
-  { icon: "🏨", title: "Stay", description: "We recommend the nearby hotel called Bhola Bhawan near the venue for the staff members" },
-  { icon: "🅿", title: "Parking", description: "Valet parking for all our guests will be available at the venue" },
+  { icon: "#", title: "Hashtag", description: "While posting photos on social media please use the hashtag — <strong>#gg</strong>" },
+  { icon: "☀", title: "Weather", description: "It will be mostly sunny with temperature reaching up to 35-40°C at the venue" },
+  { icon: "🏨", title: "Stay", description: "We recommend the nearby hotel called \"The Raja grand\" near the venue for friends and families from outstation" },
+  { icon: "🅿", title: "Parking", description: "Parking for all our guests will be available at the venue" },
 ];
 
 /**
@@ -38,11 +38,25 @@ export const INFO_ITEMS = [
  * Place your images in public/gallery/ and list them here.
  * Each entry has a src (path relative to public/) and an optional caption.
  */
+/**
+ * Gallery images for the couple photo gallery.
+ *
+ * For Google Drive images:
+ * 1. Upload images to Google Drive
+ * 2. Right-click → Share → "Anyone with the link" → Viewer
+ * 3. Copy the file ID from the share URL
+ * 4. Use format: https://drive.google.com/thumbnail?id=FILE_ID&sz=w800
+ *
+ * Replace the Unsplash URLs below with your Google Drive URLs.
+ */
 export const GALLERY_IMAGES = [
-  { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=600&fit=crop', caption: '' },
-  { src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=600&fit=crop', caption: '' },
-  { src: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&h=600&fit=crop', caption: '' },
-  { src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&h=600&fit=crop', caption: '' },
-  { src: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&h=600&fit=crop', caption: '' },
-  { src: 'https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?w=600&h=600&fit=crop', caption: '' },
+  { src: 'https://drive.google.com/thumbnail?id=1H9wnN5i1QMUBr-qdybQjcJl-cUTxZaJZ&sz=w800', caption: '' },
+  { src: 'https://drive.google.com/thumbnail?id=1h4-gJpcXm0BeyS4b8t7AklWbNeYk50Fg&sz=w800', caption: '' },
+  { src: 'https://drive.google.com/thumbnail?id=1pyWmp2tnH04QozZgRHLPDXQrkk-9zgvQ&sz=w800', caption: '' },
+  { src: 'https://drive.google.com/thumbnail?id=1UHOvUosymfrDUP_EFcjhmP0dmv3kIjjJ&sz=w800', caption: '' },
+  { src: 'https://drive.google.com/thumbnail?id=1QKreRktGSPDs00oc8nc79VzlNT5Wem1w&sz=w800', caption: '' },
+  { src: 'https://drive.google.com/thumbnail?id=1b4hiGzaf306LrHMm0G2a2wwuS9cR0DrV&sz=w800', caption: '' },
+  { src: 'https://drive.google.com/thumbnail?id=1A1xCwucxWAsAm4zqgdc5v9ImsVvxBWIX&sz=w800', caption: '' },
+  { src: 'https://drive.google.com/thumbnail?id=13sYAR3o2QXhccvDXtqdk5WQOD6HEN6iF&sz=w800', caption: '' },
+  { src: 'https://drive.google.com/thumbnail?id=1B0JcSn1Esi-N6jKA5I1VMB2_8y3UNbEJ&sz=w800', caption: '' },
 ];
