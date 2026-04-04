@@ -1,12 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-import { cloudflare } from "@cloudflare/vite-plugin";
-
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/marriage/',
-  plugins: [react(), cloudflare()],
+  base: '/',
+  plugins: [react()],
   test: {
     globals: true,
     environment: 'jsdom',
